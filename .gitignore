@@ -1,0 +1,12 @@
+_secret_info.py
+*.txt
+*.csv
+*.png
+*.mp4
+*.jpg
+*.mp3
+*.ipynb
+_pycache_
+.ipynb_checkpoints
+config
+myenv
