@@ -6,7 +6,7 @@ _secret_info.py
 *.jpg
 *.mp3
 *.ipynb
-_pycache_
+__pycache__
 .ipynb_checkpoints
 config
 myenv
