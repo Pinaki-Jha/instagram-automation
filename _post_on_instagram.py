@@ -20,7 +20,7 @@ def post_on_instagram(consistent_image_path, caption):
     #Open the playwright file
     with sync_playwright() as p:
         #launch -- Set headless = False to actually see what is going on
-        browser = p.chromium.launch(headless=False, slow_mo=250)
+        browser = p.firefox.launch(headless=False, slow_mo=250)
         page = browser.new_page()
         #get to page
         page.goto("https://www.instagram.com/")
@@ -70,9 +70,9 @@ def post_on_instagram(consistent_image_path, caption):
         
         #Native file window opens. Handling it with PyAutoIt to select the image to upload
         try:
-            autoit.control_send("Open","Edit1",image_address)
+            autoit.control_send("File Upload","Edit1",image_address)
             sleep(5)
-            autoit.control_click("Open","Button1")
+            autoit.control_click("File Upload","Button1")
             sleep(10)
         except:
             file_input = page.query_selector('input[type="file"]')
@@ -100,7 +100,8 @@ def post_on_instagram(consistent_image_path, caption):
         sleep(5)
         share_button = page.query_selector(f'div:text("Share")')
         share_button.click()
-        
+        sleep(10)
+        browser.close()
         
         #sleep(100)
             
@@ -116,7 +117,7 @@ def reel_post(caption,reel_name):
     #Open the playwright file
     with sync_playwright() as p:
         #launch -- Set headless = False to actually see what is going on
-        browser = p.chromium.launch(headless=False, slow_mo=250)
+        browser = p.firefox.launch(headless=False, slow_mo=250)
         page = browser.new_page()
         #get to page
         page.goto("https://www.instagram.com/")
@@ -164,11 +165,44 @@ def reel_post(caption,reel_name):
         upload_img_btn.click()
         sleep(10)
         
+        autoit.control_send("File Upload","Edit1",reel_address)
+        #autoit.control_send("Open","Edit1",reel_address)
+        sleep(5)                          #File Upload #32770 Edit1
+        autoit.control_click("File Upload","Button1")
+        sleep(12)
         
-        autoit.control_send("Open","Edit1",reel_address)
+        ok_btn = page.query_selector(f'button:text("OK")')
+        #<button class="_acan _acap _acaq _acas _acav _aj1-" type="button">OK</button>
+        if(ok_btn is not None):
+            ok_btn.click()
+        
+        set_size_btn = page.query_selector('svg[aria-label="Select crop"]')   #<button class="_acan _acao _acas _aj1-" type="button"><div class="x9f619 xjbqb8w x78zum5 x168nmei x13lgxp2 x5pf9jr xo71vjh x1y1aw1k x1sxyh0 xwib8y2 xurb0ha x1n2onr6 x1plvlek xryxfnj x1c4vz4f x2lah0s x1q0g3np xqjyukv x6s0dn4 x1oa3qoh xl56j7k"><svg aria-label="Select crop" class="_ab6-" color="rgb(255, 255, 255)" fill="rgb(255, 255, 255)" height="16" role="img" viewBox="0 0 24 24" width="16"><path d="M10 20H4v-6a1 1 0 0 0-2 0v7a1 1 0 0 0 1 1h7a1 1 0 0 0 0-2ZM20.999 2H14a1 1 0 0 0 0 2h5.999v6a1 1 0 0 0 2 0V3a1 1 0 0 0-1-1Z"></path></svg></div></button>
+        set_size_btn.click()
+        
         sleep(5)
-        autoit.control_click("Open","Button1")
+        
+        select_9_12_btn = page.query_selector(f'span:text("9:16")')
+        '''<span class="x1lliihq x1plvlek xryxfnj x1n2onr6 x193iq5w xeuugli x1fj9vlw x13faqbe x1vvkbs x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x x1i0vuye xvs91rp x1s688f x9bdzbf x1tu3fi x3x7a5m x10wh9bi x1wdrske x8viiok x18hxmgj" 
+        dir="auto" style="line-height: var(--base-line-clamp-line-height); --base-line-clamp-line-height: 18px;">
+        9:16</span>'''
+        select_9_12_btn.click()
+            
+        next_btn_1 = page.query_selector(f'div:text("Next")')
+        if(next_btn_1 is not None):
+            next_btn_1.click()
+            sleep(2)
+        next_btn_2 = page.query_selector(f'div:text("Next")')
+        if(next_btn_2 is not None):
+            next_btn_2.click()
+            sleep(2)
+        caption_path = page.query_selector('[role="textbox"]')
+        caption_path.fill(caption)
+        print("heehee")
+        sleep(5)
+        share_button = page.query_selector(f'div:text("Share")')
+        share_button.click()
         sleep(10)
+        browser.close()
         
         
         
@@ -182,8 +216,9 @@ def reel_post(caption,reel_name):
 
 def reel_on_instagram(caption):
     posted, pages_list, to_post_positions, reel_name = insta_reel_create()
+    #reel_name = "lalala.mp4"
     reel_post(caption,reel_name)
     
         
 #reel_on_instagram("googa")
-    
+

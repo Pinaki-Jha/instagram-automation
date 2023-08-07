@@ -13,7 +13,7 @@ from pathlib import Path
 
 
 #Globally setting the API key for ElevenLabs
-set_api_key(api_key_elevenlabs)
+#set_api_key(api_key_elevenlabs)
 
 
 
@@ -274,7 +274,7 @@ def motivational_reel_create(quote, unrefined_quote, author, reel_file_name):
     duration = audio_clip.duration  + 3    
     
     # Creating the quote text
-    text_clip = TextClip(txt=quote, size=(540, 0), color="white")
+    text_clip = TextClip(txt=quote, size=(500, 0), color="white")
     text_clip = text_clip.set_position("center")
     tc_width, tc_height = text_clip.size
     
@@ -290,6 +290,7 @@ def motivational_reel_create(quote, unrefined_quote, author, reel_file_name):
     while not get_bg_image:
         try:
             source = background_creation()
+            #source = 'https://im.picfinder.ai/image/ii/f8f2d3d5-b4d5-4921-85d3-9ecd839c7e50.jpg'
             image_file_name = reel_file_name + ".jpg"
             image_file_path = str(Path('..\inspiragrow_automation\images_reels\{}'.format(image_file_name)))
             #source = background_creation()
@@ -309,6 +310,11 @@ def motivational_reel_create(quote, unrefined_quote, author, reel_file_name):
             
         except:
             print("trying again")
+            sleep(5)
+        #place another except block here to handle when post could not be fetched multiple times
+        #mostly for testing purposes, its annoying to start this up again and again just cuz 
+        #I accidentally pressed run qwq 
+            
 
     #response = requests.get(source)
     #print(response.content)
@@ -323,7 +329,7 @@ def motivational_reel_create(quote, unrefined_quote, author, reel_file_name):
     
     # Write the final composite video clip with audio
     end_result_name = reel_file_name +".mp4"
-    end_result_address = str(Path('..\inspiragrowth_automation\end_reels\{}'.format(end_result_name)))
+    end_result_address = str(Path('E:\Inspirarchive\Inspiragrowth\inspiragrow_automation\end_reels\{}'.format(end_result_name)))
     final_output.write_videofile(end_result_address, codec="libx264",fps=30)
     return end_result_name
     
@@ -333,4 +339,4 @@ def motivational_reel_create(quote, unrefined_quote, author, reel_file_name):
     
     
     
-#motivational_reel_create("hi hello wassup i'm good \n wbu ahaha wao \n lmao qwq kya ho raha hai yeh","lalala","lalala")
+#motivational_reel_create("hi hello wassup i'm good \n wbu ahaha wao \n lmao qwq kya ho raha hai yeh","hi hello wassup i'm good wbu ahaha wao lmao qwq kya ho raha hai yeh","lalala","lalala")
