@@ -6,7 +6,12 @@ _secret_info.py
 *.jpg
 *.mp3
 *.ipynb
-__pycache__
+__pycache_
 .ipynb_checkpoints
 config
+end_reels
+*.mkv
 myenv
+_secret_info.cpython-310.pyc
+__pycache__
+/_secret_info.cpython-310.pyc

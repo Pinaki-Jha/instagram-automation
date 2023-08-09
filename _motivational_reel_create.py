@@ -132,7 +132,7 @@ def background_creation():
     prompt = random.choice(prompts)
     print(prompt)
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True, slow_mo=100)
+        browser = p.chromium.launch(headless=False, slow_mo=100)
         page = browser.new_page()
         #get to page
         page.goto("https://picfinder.ai/")

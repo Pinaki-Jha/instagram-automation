@@ -1,12 +1,15 @@
 from _master_function import *
 def insta_post_create():
     try:
-        pages_list_temp = read_pagelist_data("pages_list_data.csv")
+        read_pagelist_data("pages_list_data.csv")       #See if a pagelist already exists
     except:
-        create_pages_list("pages_list_data.csv")
+        print("No pagelist available.")
+        print("Creating a new pages list")
+        create_pages_list("pages_list_data.csv")        #If a pagelist doesn't exist, create one
         
     posted,pages_list,to_post_positions,image_name = master_function_goodreads()
-    #print(image_name)
+    print(image_name+" created.")
     return posted, pages_list ,to_post_positions,image_name
 
-#insta_post_create()
+
+insta_post_create()

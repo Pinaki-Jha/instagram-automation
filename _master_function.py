@@ -18,31 +18,26 @@ def master_function_goodreads():
             posted = read_posted_data("posted_data.csv")
                                                           # gives a list of whether a quote has been posted on instagram or not
         
-        #print(posted)
         left_to_post = False                              # Checks if all the current posts have been posted
         for i in range(0,len(posted)):
             print(type(posted[i]))
             if (posted[i]==False):
                 left_to_post = True
-                break
-            
-        #print(left_to_post)                                               
+                break                                              
                                                        #If all current quotes have been made and posted
-    
         if(left_to_post==False):
             print("Na bhai kuchh na bacha post karne ko")
             print("ruk banata main kuchh")
             
-            
-            
             page_count=0
+            
             while(page_count<len(pages_list) and pages_list[page_count][2]==True):
                 page_count+=1
                 
             pages = [pages_list[page_count][0],pages_list[page_count][1]]
             print("getting pages",pages[0],"to",pages[1])
         
-            filename = str(pages[0]) + "to" + str(pages[1])
+            #filename = str(pages[0]) + "to" + str(pages[1])
         
             unrefined_quotes, authors, posted = get_motivational_quotes(pages)
             quotes = refine_quotes(unrefined_quotes)
@@ -82,8 +77,6 @@ def master_function_goodreads():
     return posted, pages_list,to_post_positions,img
 
 
-#posted, pages_list,to_post_positions,img = master_function_goodreads()    
-#print(posted)
 
 
 
