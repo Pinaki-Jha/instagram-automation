@@ -1,5 +1,5 @@
 _secret_info.py
-*.txt
+
 *.csv
 *.png
 *.mp4
@@ -11,7 +11,5 @@ __pycache_
 config
 end_reels
 *.mkv
-myenv
-_secret_info.cpython-310.pyc
-__pycache__
-/_secret_info.cpython-310.pyc
+inspiragrow-automation
+*.cpython-310.pyc
