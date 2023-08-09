@@ -12,4 +12,4 @@ def insta_post_create():
     return posted, pages_list ,to_post_positions,image_name
 
 
-insta_post_create()
+#insta_post_create()

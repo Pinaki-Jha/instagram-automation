@@ -1,0 +1,9 @@
+playwright
+pyautoit
+bs4
+pandas
+requests
+pillow
+moviepy
+elevenlabs
+instagrapi
