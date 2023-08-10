@@ -132,7 +132,7 @@ def background_creation():
     prompt = random.choice(prompts)
     print(prompt)
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False, slow_mo=100)
+        browser = p.chromium.launch(headless=True, slow_mo=100)
         page = browser.new_page()
         #get to page
         page.goto("https://picfinder.ai/")
@@ -158,7 +158,7 @@ def background_creation():
         #login now
         username_field =  '//*[@id="form-sign-in[user-email]"]'
         password_field = '//*[@id="form-sign-in[user-password]"]'
-        page.fill(username_field,_secret_info.username)
+        page.fill(username_field,_secret_info.picfinder_username)
         page.fill(password_field,_secret_info.password_picfinder)
         login_submit = '//*[@id="form-sign-in[signin-submit]"]'
         page.click(login_submit)

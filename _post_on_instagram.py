@@ -109,9 +109,9 @@ def post_on_instagram(consistent_image_path, caption):
         
             
 
-consistent_image_path = str(Path("E:\Inspirarchive\Inspiragrowth\inspiragrow_automation\_quotes_template.png"))
-caption="goo goo ga ga"
-post_on_instagram(consistent_image_path,caption)
+#consistent_image_path = str(Path("E:\Inspirarchive\Inspiragrowth\inspiragrow_automation\_quotes_template.png"))
+#caption="goo goo ga ga"
+#post_on_instagram(consistent_image_path,caption)
 
 
 '''------------------------------------------TO POST A REEL ON INSTAGRAM--------------------------------------------------'''
@@ -220,5 +220,5 @@ def reel_on_instagram(caption):
     reel_post(caption,reel_name)
     
         
-reel_on_instagram("googa")
+#reel_on_instagram("googa")
 
