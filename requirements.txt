@@ -8,3 +8,4 @@ moviepy
 elevenlabs
 instagrapi
 tk
+customtkinter
