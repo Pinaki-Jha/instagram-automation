@@ -11,6 +11,7 @@ import random
 import urllib.request
 from pathlib import Path
 
+#HANDLE PROBLEM - PICFINDER LAYOUT CHANGED
 
 #Globally setting the API key for ElevenLabs
 set_api_key(api_key_elevenlabs)
