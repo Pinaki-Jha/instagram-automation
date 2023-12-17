@@ -63,7 +63,7 @@ def post_on_instagram(consistent_image_path, caption):
         
         #Create and save the first picture along with its address, add the address of the second picture
         posted, pages_list, to_post_positions, image_name = insta_post_create()
-        image_address = '"' + str(Path('E:\Inspirarchive\Inspiragrowth\inspiragrow_automation\images\{}'.format(image_name))) + '" "' + consistent_image_path +'"'
+        image_address = '"' + str(Path('E:\Inspirarchive\Inspiragrowth\inspiragrow_automation\images\{}'.format(image_name))) + '"'
         print(image_address)
         print("Image created...")
         #get to the upload button
