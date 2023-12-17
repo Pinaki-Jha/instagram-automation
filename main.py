@@ -54,21 +54,52 @@ frame_parent.pack(pady=10,padx=20,fill="both",expand=True)
 frame_inspiragrow = ctk.CTkFrame(master=frame_parent)
 frame_inspiragrow.pack(fill="both",pady=2)
 
+#Inspiragrow subheading created
 frame_inspiragrow_subheading = ctk.CTkFrame(master=frame_inspiragrow, fg_color="chartreuse4")
 frame_inspiragrow_subheading.pack(fill="both")
 label_subheading_inspiragrow = ctk.CTkLabel(master=frame_inspiragrow_subheading,text="InspiraGrow", font=("Impact",24))
 label_subheading_inspiragrow.pack(pady=10)
 
+#Inspiragrow content frame created
 frame_inspiragrow_content = ctk.CTkFrame(master=frame_inspiragrow)
 frame_inspiragrow_content.pack(fill="both")
 
-post_button_inspiragrow = ctk.CTkButton(master=frame_inspiragrow_content,text="Share a Post",font=("Montserrat",16),command=inspiragrow_post_btn)
+
+frame_inspiragrow_pp= ctk.CTkFrame(master=frame_inspiragrow_content)
+frame_inspiragrow_pp.pack(fill="both")
+#inspiragrow buttons for posting and reels defined
+post_button_inspiragrow = ctk.CTkButton(master=frame_inspiragrow_pp,text="Share a Post",font=("Montserrat",16),command=inspiragrow_post_btn)
 post_button_inspiragrow.pack(side="left",padx=(50,10),pady=(20,10))
-reel_button_inspiragrow = ctk.CTkButton(master=frame_inspiragrow_content,text="Share a Reel",font=("Montserrat",16),command=inspiragrow_reel_btn)
+reel_button_inspiragrow = ctk.CTkButton(master=frame_inspiragrow_pp,text="Share a Reel",font=("Montserrat",16),command=inspiragrow_reel_btn)
 reel_button_inspiragrow.pack(side="left", padx=(50,10),pady=(20,10))
+
+frame_inspiragrow_cp = ctk.CTkFrame(master=frame_inspiragrow_content)
+frame_inspiragrow_cp.pack(fill="both")
+reel_button_inspiragrow = ctk.CTkButton(master=frame_inspiragrow_cp,text="Custom Post",font=("Montserrat",16))
+reel_button_inspiragrow.pack()
+
 
 frame_inspiragrow_content.pack_forget()
 label_subheading_inspiragrow.bind("<Button-1>", lambda event: toggle_frame(frame_inspiragrow_content))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -94,6 +125,14 @@ reel_button_inspiradream.pack(side="left", padx=(50,10),pady=(20,10))
 
 frame_inspiradream_content.pack_forget()
 label_subheading_inspiradream.bind("<Button-1>", lambda event: toggle_frame(frame_inspiradream_content))
+
+
+
+
+
+
+
+
 
 
 

@@ -14,7 +14,7 @@ from pathlib import Path
 #HANDLE PROBLEM - PICFINDER LAYOUT CHANGED
 
 #Globally setting the API key for ElevenLabs
-set_api_key(api_key_elevenlabs)
+#set_api_key(api_key_elevenlabs)
 
 
 
@@ -141,44 +141,53 @@ def background_creation():
         #Get to a page where login is accessible
         
         #get the prompt area
-        prompt_area = '//*[@id="form-search-bar[search-box]"]'
+       #prompt_area = '//*[@id="form-search-bar[search-box]"]' 
+        prompt_area = '//*[@id="root"]/div/div[1]/div/div/div[3]/div/div[1]/textarea'
         #fill the default prompt
-        page.fill(prompt_area,"lush green mountains \n")
+        page.fill(prompt_area,prompt)
         sleep(1)
         #submit the prompt
-        submit_button = '//*[@id="aux-buttons"]/a[1]'
+        submit_button = '//*[@id="root"]/div/div[1]/div/div/div[3]/div/div[2]/div/img'
         page.click(submit_button)
         sleep(5)
         #get to the login page
-        account_button = '//*[@id="account-menu-button"]'
-        login_button = '//*[@id="account-window"]/div/ul/li[1]/a'
+        account_button ='//*[@id="Group_58655"]' #'//*[@id="account-menu-button"]'
+        login_button = '//*[@id="root"]/div/div[2]/div/div/div[3]/div[2]/div/div[1]/div/div[2]/div[1]/a[1]' #'//*[@id="account-window"]/div/ul/li[1]/a'
         page.click(account_button)
+        sleep(2)
         page.click(login_button)
         print("login page reached")
         
         #login now
-        username_field =  '//*[@id="form-sign-in[user-email]"]'
-        password_field = '//*[@id="form-sign-in[user-password]"]'
+        username_field =  '//*[@id="root"]/div/div[2]/div/div/div[3]/div/div/form/div[1]/div[1]/input' #'//*[@id="form-sign-in[user-email]"]'
+        password_field =  '//*[@id="root"]/div/div[2]/div/div/div[3]/div/div/form/div[1]/div[2]/input' #'//*[@id="form-sign-in[user-password]"]'
         page.fill(username_field,_secret_info.picfinder_username)
         page.fill(password_field,_secret_info.password_picfinder)
-        login_submit = '//*[@id="form-sign-in[signin-submit]"]'
+        login_submit =  '//*[@id="root"]/div/div[2]/div/div/div[3]/div/div/form/div[2]/button'  #'//*[@id="form-sign-in[signin-submit]"]'
         page.click(login_submit)
         print("login successful")
         #lOGIN FINISH
-        sleep(5)
+        sleep(10)
         
+        #falana_button = page.query_selector(f'div[aria-label="Dismiss"]')
+        #if(falana_button is not None):
+        #falana_button.click()
+        #sleep(2)
+        #'''<button value="[object Object]" class=" intercom-1a3428h eqq3twc4" style="transform: translate3d(0px, 0px, 0px); max-width: 248px; opacity: 1;">I know what I'm doing, thanks</button>'''
         #fill the real prompt
         #prompt="lusty green mountains"
-        page.fill(prompt_area,prompt)
-        sleep(1)
+        
+        #page.fill(prompt_area,prompt)
+        #sleep(1)
         #submit the prompt
-        submit_button = '//*[@id="aux-buttons"]/a[1]'
-        page.click(submit_button)
-        sleep(5)
+        #submit_button = '//*[@id="aux-buttons"]/a[1]'
+        #submit_button = '//*[@id="root"]/div/div[1]/div/div/div[3]/div/div[2]/div/img'
+        #page.click(submit_button)
+        #sleep(5)
         
         #get to the settings, set the image size
-        settings_button = '//*[@id="settings-menu-button"]'
-        ratio_9_12_button = '//*[@id="settings-window"]/div/div[1]/div/div[8]'
+        settings_button = '//*[@id="root"]/div/div[2]/div/div/div[3]/button[1]/div/div' #'//*[@id="settings-menu-button"]'
+        ratio_9_12_button = '//*[@id="root"]/div/div[2]/div/div/div[3]/div[2]/div/div[1]/div/div[1]/div[2]/div[6]' #'//*[@id="settings-window"]/div/div[1]/div/div[8]'
         page.click(settings_button)
         page.click(ratio_9_12_button)
         #get the image generated through webscraping
@@ -191,8 +200,10 @@ def background_creation():
         trying_time =  180
         start_time = time.time()
         while (time.time()-start_time<=trying_time) and find_image==False:
-            if(page.is_visible('div[data-bnsfwc="false"]')):
-                image_element = page.query_selector('div[data-bnsfwc="false"]')
+            if(page.is_visible('div[class="image-grid"]')):
+                print("woah")
+                image_element = page.query_selector('div[class="image-grid"]')
+                print("found") 
                 html = image_element.inner_html()
                 print("image found")
                 find_image=True
@@ -229,7 +240,8 @@ def audio_generation(quote,author,filename):
     audio = generate(
         text=quote,
         voice="Arnold",
-        model='eleven_monolingual_v1'
+        model='eleven_monolingual_v1',
+        #api_key=api_key_elevenlabs
     )
 
     
@@ -338,6 +350,6 @@ def motivational_reel_create(quote, unrefined_quote, author, reel_file_name):
 
     
     
-    
+#background_creation();
     
 #motivational_reel_create("hi hello wassup i'm good \n wbu ahaha wao \n lmao qwq kya ho raha hai yeh","hi hello wassup i'm good wbu ahaha wao lmao qwq kya ho raha hai yeh","lalala","lalala")
